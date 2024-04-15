@@ -1,0 +1,55 @@
+{
+    "name": "HotDeals",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+	// Default path to open when attaching to a new container.
+	"workspaceFolder": "/code",
+    // Configure tool-specific properties.
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			// Set *default* container specific settings.json values on container create.
+			"settings": { 
+				"python.testing.unittestEnabled": false,
+				"python.testing.pytestEnabled": true,
+				"python.formatting.provider": "black",
+				"python.linting.mypyEnabled": true,
+				"python.linting.enabled": true,
+				"remote.SSH.showLoginTerminal": true,
+				"remote.SSH.useLocalServer": false,
+				"terminal.integrated.defaultProfile.linux": "bash"
+			},
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance"
+			],
+			"folders": [
+				{
+					"path": "code"
+				}
+			]
+		},
+
+		"portsAttributes": {
+			"80": {
+				"label": "HotDeals",
+				"onAutoForward": "notify"
+			}
+		},
+
+		"forwardPorts": [
+			4040
+		]
+	},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "pip3 install --user -r requirements.txt",
+
+	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "appuser"
+}
